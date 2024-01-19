@@ -13,7 +13,7 @@
 			<attribute name="owner.project.facets" value="jst.web;jst.jsf"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/projektjava_ejb"/>
 	<classpathentry kind="lib" path="C:/Users/Karolina/OneDrive/Pulpit/javaee/wildfly-29.0.1.Final/wildfly-29.0.1.Final/modules/system/layers/base/jakarta/faces/impl/main/jakarta.faces-4.0.2.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/movieweb_ejb"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
