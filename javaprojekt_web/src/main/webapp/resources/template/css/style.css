@@ -1,0 +1,175 @@
+body{
+	font-family: 'Century Gothic',helvetica,verdana,arial;
+	background: url("../img/bg2.jpg.xhtml?ln=template") no-repeat center center fixed;
+	background-size: cover;
+	margin:0;
+}
+
+.bottom-space{
+	margin-bottom: 2em;
+}
+
+.center {
+	text-align: center;
+	margin-bottom: 2em;
+}
+
+.top-space{
+	margin-top: 1em;
+}
+
+.box{
+	padding: 1em;
+	border-radius: 3px;
+	background-color: rgb(255, 255, 255,0.7);
+}
+
+.short-box{
+	padding: 0.5em;
+	border-radius: 3px;
+	background-color: rgb(255, 255, 255,0.6);
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#page_wrapper{
+	margin: 1em;
+	min-width: 700px;
+}
+
+#footer{
+	text-align: center;
+}
+
+#loginpage {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 2em;
+	padding: 1em;
+	border-radius: 3px;
+	background-color: rgb(255, 255, 255,0.7);
+	max-width: 400px;
+	text-align: center;	
+	align-items: center;
+}
+
+.short {
+	max-width: 500px;
+	text-align: center;	
+	align-items: center;
+}
+
+.center{
+	text-align: center;
+	align-items: center;
+	margin: auto;
+}
+
+div.container {
+  text-align: center;
+}
+
+body .ui-button {
+    background: rgb(255, 128, 192)!important;
+    color: #fff;
+    border: 1px solid #800080;
+    margin: 0;
+    outline: 0 none;
+    border-radius: 4px;
+    transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s,opacity .2s;
+}
+
+.ui-rounded-button {
+	background-color: rgb(255, 128, 192)!important;
+	color: rgb(255, 255, 255)!important;
+}
+
+.movie-view .movie-view-content {
+        border: 1px solid var(--surface-d);
+        border-radius: 3px;
+        margin: .3rem;
+        text-align: center;
+        padding: 2rem 0;
+        background-color: rgb(255, 200, 227,0.2);
+}
+    
+.movie-view .movie-cover {
+        width: 10%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+}
+
+input.right {
+	float: right;
+}
+
+a {
+  color: hotpink;
+}
+
+body .ui-commandlink, body .ui-link {
+    color: hotpink;
+    transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s,opacity .2s;
+}
+
+img-nofit {
+	width:  100%;
+    height: 100%;
+}
+
+.product .product-list-item img {
+    width: 150px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+    margin-right: 2rem;
+}
+
+.person .person-list-item img {
+    width: 300px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+    margin-right: 2rem;
+}
+
+.product .product-list-item .product-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    align-self: flex-end;
+}
+
+.product .product-list-item {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.product .product-name {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.product .product-list-item .product-list-detail {
+    flex: 1 1 0;
+    -ms-flex: 1 1 0;
+}
+
+.product .product-description {
+    margin: 0 0 1rem 0;
+    max-width: 400px;
+}
+
+
+body .ui-carousel .ui-carousel-indicators .ui-carousel-indicator.ui-state-highlight button {
+    background: hotpink;
+    color: #fff;
+}
+
+.form {
+	margin-left: 0;
+}
+
