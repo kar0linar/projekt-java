@@ -10,14 +10,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.ManyToOne;
 import com.jsf.entities.Role;
-import java.util.Date;
 
 
 /**
@@ -25,7 +24,8 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Animal.findAll", query="SELECT a FROM Animal a")
+@Table(name = "animal")
+@NamedQuery(name = "Animal.findAll", query = "SELECT a FROM Animal a")
 public class Animal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -54,11 +54,20 @@ public class Animal implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="species_id")
 	private Specy specy;
-
+	
+	public void log(String text) {
+		System.out.println(text + ": [" + animalId+ "], " + animalName + ", " + joinDate + ", " + user + ", " + category);
+	}
+	
+	//bi-directional many-to-one association to Role
+		@OneToMany(mappedBy="animal")
+		private List<Role> roles;
+		
+		
 	public Animal() {
 	}
 
-	public int getAnimalId() {
+	public Integer getAnimalId() {
 		return this.animalId;
 	}
 
