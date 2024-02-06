@@ -59,9 +59,9 @@ public class Animal implements Serializable {
 		System.out.println(text + ": [" + animalId+ "], " + animalName + ", " + joinDate + ", " + user + ", " + category);
 	}
 	
-	//bi-directional many-to-one association to Role
-		@OneToMany(mappedBy="animal")
-		private List<Role> roles;
+//	//bi-directional many-to-one association to Role
+//		@OneToMany(mappedBy="movie")
+//		private List<Role> roles;
 		
 		
 	public Animal() {

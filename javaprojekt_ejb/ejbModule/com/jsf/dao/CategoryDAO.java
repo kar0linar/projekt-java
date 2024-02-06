@@ -59,17 +59,17 @@ public class CategoryDAO {
 		String select = "select c ";
 		String from = "from Category c ";
 		String where = "";
-		String orderby = "order by c.category_id";
+		String orderby = "";
 
 		// search for surid
-		String category_id = (String) searchParams.get("category_id");
-		if (category_id != null) {
+		String category_name = (String) searchParams.get("category_name");
+		if (category_name != null) {
 			if (where.isEmpty()) {
 				where = "where ";
 			} else {
 				where += "and ";
 			}
-			where += "c.category_id like :category_id ";
+			where += "c.category_name like :category_name ";
 		}
 		
 		// ... other parameters ... 
@@ -78,8 +78,7 @@ public class CategoryDAO {
 		Query query = em.createQuery(select + from + where + orderby);
 
 		// 3. Set configured parameters
-		if (category_id != null) {
-			query.setParameter("category_id", category_id+"%");
+		if (category_name != null) {
 		}
 
 		// ... other parameters ... 
