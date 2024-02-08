@@ -1,4 +1,4 @@
-package com.jsfcourse.animal;
+package com.jsfcourse.specy;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,17 +15,18 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.Flash;
 import jakarta.servlet.http.HttpSession;
 
-import com.jsf.dao.AnimalDAO;
-import com.jsf.entities.Animal;
+import com.jsf.dao.SpecyDAO;
+import com.jsf.entities.Specy;
 
 @Named
 @RequestScoped
-public class AnimalListBB {
-	private static final String PAGE_ANIMAL_EDIT = "/pages/edit/animalEdit?faces-redirect=true";
-	private static final String PAGE_ANIMAL_DETAILS = "/pages/edit/animalDetails?faces-redirect=true";
+public class SpecyBB {
+	private static final String PAGE_SPECY_EDIT = "/pages/edit/specyEdit?faces-redirect=true";
+	private static final String PAGE_SPECY_DETAILS = "/pages/edit/specyDetails?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String title;
+	private List<Specy> list = null;
 		
 	@Inject
 	ExternalContext extcontext;
@@ -34,7 +35,7 @@ public class AnimalListBB {
 	Flash flash;
 	
 	@EJB
-	AnimalDAO animalDAO;
+	SpecyDAO specyDAO;
 	
 		
 	public String getTitle() {
@@ -45,12 +46,12 @@ public class AnimalListBB {
 		this.title = title;
 	}
 
-	public List<Animal> getFullList(){
-		return animalDAO.getFullList();
+	public List<Specy> getFullList(){
+		return specyDAO.getFullList();
 	}
 
-	public List<Animal> getList(){
-		List<Animal> list = null;
+	public List<Specy> getList(){
+//		List<Specy> list = null;
 		
 		//1. Prepare search params
 		Map<String,Object> searchParams = new HashMap<String, Object>();
@@ -60,48 +61,48 @@ public class AnimalListBB {
 //		}
 		
 		//2. Get list
-		list = animalDAO.getList(searchParams);
-		
+		list = specyDAO.getList(searchParams);
+		System.out.println("sraka" + list);
 		return list;
 	}
 
-	public String newAnimal(){
-		Animal animal = new Animal();
+	public String newSpecy(){
+		Specy specy = new Specy();
 		
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash	
-		flash.put("animal", animal);
+		flash.put("specy", specy);
 		
-		return PAGE_ANIMAL_EDIT;
+		return PAGE_SPECY_EDIT;
 	}
 
-	public String editAnimal(Animal animal){
+	public String editSpecy(Specy specy){
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash 
-		flash.put("animal", animal);
+		flash.put("specy", specy);
 		
-		return PAGE_ANIMAL_EDIT;
+		return PAGE_SPECY_EDIT;
 	}
 	
-	public String showAnimal(Animal animal){
+	public String showSpecy(Specy specy){
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash 
-		flash.put("animal", animal);
+		flash.put("specy", specy);
 		
-		return PAGE_ANIMAL_DETAILS;
+		return PAGE_SPECY_DETAILS;
 	}
 
-	public String deleteAnimal(Animal animal){
-		animalDAO.remove(animal);
+	public String deleteSpecy(Specy specy){
+		specyDAO.remove(specy);
 		return PAGE_STAY_AT_THE_SAME;
 	}
 	

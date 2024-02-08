@@ -32,7 +32,7 @@ public class Specy implements Serializable {
 
 	@Id
 	@Column(name="species_id")
-	private int speciesId;
+	private Integer speciesId;
 
 	@Column(name="species_name")
 	private String speciesName;
@@ -44,11 +44,11 @@ public class Specy implements Serializable {
 	public Specy() {
 	}
 
-	public int getSpeciesId() {
+	public Integer getSpeciesId() {
 		return this.speciesId;
 	}
 
-	public void setSpeciesId(int speciesId) {
+	public void setSpeciesId(Integer speciesId) {
 		this.speciesId = speciesId;
 	}
 

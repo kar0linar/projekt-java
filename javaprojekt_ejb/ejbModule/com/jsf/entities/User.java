@@ -59,7 +59,7 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 

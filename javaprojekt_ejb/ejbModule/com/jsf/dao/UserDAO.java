@@ -59,7 +59,7 @@ public class UserDAO {
 		String select = "select u ";
 		String from = "from User u ";
 		String where = "";
-		String orderby = "order by u.id";
+		String orderby = "";
 
 		// search for surid
 		String id = (String) searchParams.get("id");

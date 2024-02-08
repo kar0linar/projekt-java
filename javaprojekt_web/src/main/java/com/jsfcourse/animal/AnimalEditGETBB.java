@@ -18,7 +18,7 @@ import com.jsf.entities.Animal;
 public class AnimalEditGETBB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_ANIMAL_LIST = "animalList?faces-redirect=true";
+	private static final String PAGE_ANIMAL_PAGE = "animalPage?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private Animal animal = new Animal();
@@ -33,6 +33,10 @@ public class AnimalEditGETBB implements Serializable {
 	public Animal getAnimal() {
 		return animal;
 	}
+	
+	public void setAnimal(Animal animal) {
+		this.animal=animal;
+	}
 
 	public void onLoad() throws IOException {
 		if (!context.isPostback()) {
@@ -43,10 +47,10 @@ public class AnimalEditGETBB implements Serializable {
 				animal = loaded;
 			} else {
 				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błędne użycie systemu", null));
-				// if (!context.isPostback()) { // possible redirect
-				// context.getExternalContext().redirect("personList.xhtml");
-				// context.responseComplete();
-				// }
+//				 if (!context.isPostback()) { // possible redirect
+//				 context.getExternalContext().redirect("personList.xhtml");
+//				 context.responseComplete();
+//				 }
 			}
 		}
 
@@ -73,6 +77,6 @@ public class AnimalEditGETBB implements Serializable {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
-		return PAGE_ANIMAL_LIST;
+		return PAGE_ANIMAL_PAGE;
 	}
 }

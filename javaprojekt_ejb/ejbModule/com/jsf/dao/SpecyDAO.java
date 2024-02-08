@@ -59,17 +59,17 @@ public class SpecyDAO {
 		String select = "select s ";
 		String from = "from Specy s ";
 		String where = "";
-		String orderby = "order by s.species_id";
+		String orderby = "";
 
 		// search for surid
-		String species_id = (String) searchParams.get("species_id");
-		if (species_id != null) {
+		String species_name = (String) searchParams.get("species_name");
+		if (species_name != null) {
 			if (where.isEmpty()) {
 				where = "where ";
 			} else {
 				where += "and ";
 			}
-			where += "s.species_id like :species_id ";
+			where += "s.species_name like :species_name ";
 		}
 		
 		// ... other parameters ... 
@@ -78,8 +78,8 @@ public class SpecyDAO {
 		Query query = em.createQuery(select + from + where + orderby);
 
 		// 3. Set configured parameters
-		if (species_id != null) {
-			query.setParameter("species_id", species_id+"%");
+		if (species_name != null) {
+			query.setParameter("species_name", species_name+"%");
 		}
 
 		// ... other parameters ... 

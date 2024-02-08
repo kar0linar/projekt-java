@@ -30,6 +30,7 @@ public class Animal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="animal_id")
 	private int animalId;
 
@@ -71,7 +72,7 @@ public class Animal implements Serializable {
 		return this.animalId;
 	}
 
-	public void setAnimalId(int animalId) {
+	public void setAnimalId(Integer animalId) {
 		this.animalId = animalId;
 	}
 

@@ -1,4 +1,4 @@
-package com.jsfcourse.animal;
+package com.jsfcourse.category;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,14 +15,14 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.Flash;
 import jakarta.servlet.http.HttpSession;
 
-import com.jsf.dao.AnimalDAO;
-import com.jsf.entities.Animal;
+import com.jsf.dao.CategoryDAO;
+import com.jsf.entities.Category;
 
 @Named
 @RequestScoped
-public class AnimalListBB {
-	private static final String PAGE_ANIMAL_EDIT = "/pages/edit/animalEdit?faces-redirect=true";
-	private static final String PAGE_ANIMAL_DETAILS = "/pages/edit/animalDetails?faces-redirect=true";
+public class CategoryListBB {
+	private static final String PAGE_CATEGORY_EDIT = "/pages/edit/categoryEdit?faces-redirect=true";
+	private static final String PAGE_CATEGORY_DETAILS = "/pages/edit/categoryDetails?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String title;
@@ -34,7 +34,7 @@ public class AnimalListBB {
 	Flash flash;
 	
 	@EJB
-	AnimalDAO animalDAO;
+	CategoryDAO categoryDAO;
 	
 		
 	public String getTitle() {
@@ -45,12 +45,12 @@ public class AnimalListBB {
 		this.title = title;
 	}
 
-	public List<Animal> getFullList(){
-		return animalDAO.getFullList();
+	public List<Category> getFullList(){
+		return categoryDAO.getFullList();
 	}
 
-	public List<Animal> getList(){
-		List<Animal> list = null;
+	public List<Category> getList(){
+		List<Category> list = null;
 		
 		//1. Prepare search params
 		Map<String,Object> searchParams = new HashMap<String, Object>();
@@ -60,48 +60,48 @@ public class AnimalListBB {
 //		}
 		
 		//2. Get list
-		list = animalDAO.getList(searchParams);
+		list = categoryDAO.getList(searchParams);
 		
 		return list;
 	}
 
-	public String newAnimal(){
-		Animal animal = new Animal();
+	public String newCategory(){
+		Category category = new Category();
 		
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash	
-		flash.put("animal", animal);
+		flash.put("category", category);
 		
-		return PAGE_ANIMAL_EDIT;
+		return PAGE_CATEGORY_EDIT;
 	}
 
-	public String editAnimal(Animal animal){
+	public String editCategory(Category category){
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash 
-		flash.put("animal", animal);
+		flash.put("category", category);
 		
-		return PAGE_ANIMAL_EDIT;
+		return PAGE_CATEGORY_EDIT;
 	}
 	
-	public String showAnimal(Animal animal){
+	public String showCategory(Category category){
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash 
-		flash.put("animal", animal);
+		flash.put("category", category);
 		
-		return PAGE_ANIMAL_DETAILS;
+		return PAGE_CATEGORY_DETAILS;
 	}
 
-	public String deleteAnimal(Animal animal){
-		animalDAO.remove(animal);
+	public String deleteCategory(Category category){
+		categoryDAO.remove(category);
 		return PAGE_STAY_AT_THE_SAME;
 	}
 	

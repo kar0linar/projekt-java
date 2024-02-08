@@ -59,17 +59,17 @@ public class AnimalDAO {
 		String select = "select a ";
 		String from = "from Animal a ";
 		String where = "";
-		String orderby = "order by a.name";
+		String orderby = "";
 
 		// search for surname
-		String name = (String) searchParams.get("name");
+		String name = (String) searchParams.get("animal_name");
 		if (name != null) {
 			if (where.isEmpty()) {
 				where = "where ";
 			} else {
 				where += "and ";
 			}
-			where += "a.name like :name ";
+			where += "a.animal_name like :animal_name ";
 		}
 		
 		// ... other parameters ... 
@@ -79,7 +79,7 @@ public class AnimalDAO {
 
 		// 3. Set configured parameters
 		if (name != null) {
-			query.setParameter("name", name+"%");
+			query.setParameter("animl_name", name+"%");
 		}
 
 		// ... other parameters ... 

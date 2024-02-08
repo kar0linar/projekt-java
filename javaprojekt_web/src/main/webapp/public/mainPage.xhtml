@@ -9,118 +9,70 @@
 <ui:composition template="/templates/view-template.xhtml">
 
 	<ui:define name="title">
-	</ui:define>
-	
-	
-		<ui:define name="content">
-		
-		    <h:form>
-<!-- 		    <p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/> -->
-			<p:button value="Filmy" outcome="/public/moviePage.xhtml"/>
-			<p:button value="Aktorzy" outcome="/public/personPage.xhtml"/>
-			<p:commandButton value="Logowanie" action="#{loginBB.doLogout}" /> <!--icon="pi pi-fw pi-power-off"-->
-			</h:form>
-			
-			<p:panel header="Szukaj filmy" toggleable="true" collapsed="true"
-		style="margin-bottom: 4em;">
+        Super Zoo
+    </ui:define>
+
+
+	<ui:define name="content">
+
 		<h:form>
-			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="tytuł:" />
-				<p:inputText value="" />
-				<p:commandButton value="Szukaj" update="form-table" />
-			</h:panelGrid>
+			<!-- 		    <p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/> -->
+			<p:button value="Tabela zwierząt" outcome="/public/animalPage.xhtml" />
+			<p:button value="Tabela opiekunów" outcome="/public/caretakerPage.xhtml" />
+			<p:commandButton value="Wyloguj" action="#{loginBB.doLogout}" />
+			<!--icon="pi pi-fw pi-power-off"-->
 		</h:form>
-	</p:panel>
+
+<!-- 		<p:panel header="Szukaj filmy" toggleable="true" collapsed="true" -->
+<!-- 			style="margin-bottom: 4em;"> -->
+<!-- 			<h:form> -->
+<!-- 				<h:panelGrid columns="2" cellpadding="5"> -->
+<!-- 					<h:outputLabel value="tytuł:" /> -->
+<!-- 					<p:inputText value="{animalListBB.title}" /> -->
+<!-- 					<p:commandButton value="Szukaj" update="form-table" /> -->
+<!-- 				</h:panelGrid> -->
+<!-- 			</h:form> -->
+<!-- 		</p:panel> -->
 		<h:form id="form-table" style="margin-bottom:2em;">
 			<h2 style="text-align: center;">nasze zwierzęta</h2>
-					<div class="card">
-<!--         <p:carousel value="#{categoryListBB.list}" var="c" numVisible="3" numScroll="3" circular="true" autoplayInterval="5000"> -->
-<!--             <div class="category-view"> -->
-<!--                 <div class="category-view-content"> -->
-<!--                     <div> -->
-<!--                 	<p:graphicImage name="/images/#{c.picture}" width="200" height="200"/> -->
-<!--                     </div> -->
-<!--                     <div> -->
-<!--                        <h3 class="mb-3"><p:link value="#{c.categoryName}"> -->
-<!--         				<f:param name="c" value="#{c.categoryId}"/></p:link></h3> -->
-<!--                         <h6 class="mt-0 mb-3"> -->
-<!-- 						<br></br> -->
-<!--                         <h5 class="mt-0 mb-3"><h:outputText value="#{c.categoryDescription}"></h:outputText></h5> -->
-<!--                         </h6> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </p:carousel> -->
-        
-        <div class="product card">
-    <h:form id="form">
-        <p:dataView var="c" value="#{categoryListBB.list}" 
-                    gridIcon="pi pi-th-large" listIcon="pi pi-bars"
-                    layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true">
+			<div class="card">
 
-         <p:dataViewGridItem>
-                <div class="product-grid-item card border-1">
-                    <div class="product-grid-item-top">
-                     <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{c.categoryName}</span>
-                    </div>
-                    <div class="product-grid-item-content">
-                        <p:graphicImage name="images/#{c.picture}"/>
-                        <div class="product-name">#{c.categoryDescription}</div>                       
-                    </div>
-                    
-                </div>
-            </p:dataViewGridItem>
 
-<!--             <p:dataViewListItem> -->
-<!--                 <div class="product-list-item"> -->
-<!--                     <p:graphicImage name="/images/#{c.picture}"/> -->
-<!--                     <div class="product-list-detail"> -->
-<!--                         <div class="product-name">#{c.categoryName}</div> -->
-<!--                         <div class="product-description">#{c.categoryDescription}</div> -->
-                        
-<!--                     </div> -->
-<!--                     <div class="product-list-action"> -->
-                        
-<!--                         <p:commandButton type="button" -->
-<!--                                             value="Add To Cart" -->
-<!--                                             icon="pi pi-shopping-cart" -->
-<!--                                            > -->
-<!--                         </p:commandButton> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </p:dataViewListItem> -->
-        </p:dataView>
+				<div class="product card">
+					<h:form id="form">
+						<p:dataView var="c" value="#{categoryListBB.list}"
+							gridIcon="pi pi-th-large" listIcon="pi pi-bars" layout="grid"
+							gridRowStyleClass="lg:col-6 xl:col-4" flex="true">
 
-    </h:form>
-</div>
-    </div>
-    
-			</h:form>
-			
-			<h:form id="form-table1" style="margin-bottom:1em;">
-<!-- 			<h2 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Popularni teraz: aktorzy</h2> -->
-					<div class="card">
-<!--         <p:carousel value="#{personListBB.list}" var="p" numVisible="2" numScroll="3" circular="true" autoplayInterval="8000"> -->
-<!--             <div class="movie-view"> -->
-<!--                 <div class="movie-view-content"> -->
-<!--                     <div> -->
-<!--                 	<p:graphicImage name="/images/#{p.portrait}" width="300" height="420"/> -->
-<!--                     </div> -->
-<!--                     <div> -->
-<!--                         <h3 class="mb-3"><p:link outcome="personDetails" value="#{p.name} #{p.surname}"> -->
-<!--         				<f:param name="p" value="#{p.idperson}"/></p:link></h3> -->
-<!--                         <h6 class="mt-0 mb-3"> -->
-<!--                         <h:outputText value="#{p.birthyear}"> -->
-<!--                         </h:outputText><br></br> -->
-<!--                         </h6> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </p:carousel> -->
-    </div>
-    
-			</h:form>
-			</ui:define>
+							<p:dataViewGridItem>
+								<div class="product-grid-item card border-1">
+									<div class="product-grid-item-top">
+										<span
+											class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{c.categoryName}</span>
+									</div>
+									<div class="product-grid-item-content">
+										<p:graphicImage name="images/#{c.picture}" />
+										<div class="product-name">#{c.categoryDescription}</div>
+									</div>
+
+								</div>
+							</p:dataViewGridItem>
+
+
+						</p:dataView>
+
+					</h:form>
+				</div>
+			</div>
+
+		</h:form>
+
+		<h:form id="form-table1" style="margin-bottom:1em;">
+
+			<div class="card"></div>
+
+		</h:form>
+	</ui:define>
 
 </ui:composition>
 
