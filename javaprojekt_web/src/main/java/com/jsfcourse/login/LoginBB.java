@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import com.jsfcourse.db.UserDAO;
-import com.jsfcourse.entities.User;
+import com.jsf.entities.User;
 
 @Named
 @RequestScoped

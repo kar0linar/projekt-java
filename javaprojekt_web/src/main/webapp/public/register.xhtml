@@ -4,38 +4,50 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> <ui:composition
+	template="/templates/logo-template.xhtml">
 
-<ui:composition template="/templates/logo-template.xhtml">
-
-	<ui:define name="title">   
-	</ui:define>
-	
 	<ui:define name="loginpage">
 
 		<h:form>
-			<h3 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Rejestracja</h3>
-			<h:panelGrid columns="2" cellpadding="5" styleClass="bottom-space">
-				<p:outputLabel for="login" value="login:" />
-				<p:inputText id="login" value="#{LoginBB.login}"
-					required="true"	requiredMessage="podaj login"/>
-				<p:outputLabel for="password" value="hasło:" />
-				<p:password id="password" value="#{LoginBB.password}" toggleMask="true" redisplay="true" 
-				 	required="true"	requiredMessage="podaj hasło"/>
+			<h3 style="text-align: center; color: black">Rejestracja</h3>
+
+			<h:panelGrid columns="3" cellpadding="5" styleClass="bottom-space"
+				style="color: black">
+				<p:outputLabel for="u-login" value="login:" />
+				<p:inputText id="u-login" value="#{UserRegisterBB.user.login}"
+					required="true" requiredMessage="podaj login" />
+
+				<p:outputLabel for="u-name" value="podaj imię:" />
+				<p:inputText id="u-name" value="#{UserRegisterBB.user.name}"
+					required="true" requiredMessage="podaj imię" />
+
+				<p:outputLabel for="u-surname" value="podaj nazwisko:" />
+				<p:inputText id="u-surname" value="#{UserRegisterBB.user.surname}"
+					required="true" requiredMessage="podaj nazwisko" />
+
+
+				<p:message for="u-password" globalOnly="true" />
+				<p:outputLabel for="u-password" value="hasło:" />
+				<p:password id="u-password" value="#{UserRegisterBB.user.password}"
+					toggleMask="true" redisplay="true" required="true"
+					requiredMessage="podaj hasło">
+				</p:password>
+				<p:message for="u-password" globalOnly="true" />
+
+
 			</h:panelGrid>
-		
-			<h:messages />
-		
-					<p:commandButton value="Zarejestruj"
-					action="#{userRegisterBB.saveData()}" style="margin-right: 1em;"
-					update="@form" />
-					<p:button value="Strona główna" outcome="/public/mainPage.xhtml" icon="pi pi-home"/>
-					
-			<!--h:commandButton styleClass="rounded-button ui-button-help" style="color: hotpink" value="Zarejestruj się"/-->
+
+			<p:messages id="msgs" globalOnly="true" />
+
+			<p:commandButton value="Zarejestruj"
+				action="#{UserRegisterBB.saveData()}" style="margin-right: 1em;"
+				update="@form" />
+			<p:button value="Strona główna" outcome="/public/mainPage.xhtml"
+				icon="pi pi-home" />
 
 		</h:form>
 
 	</ui:define>
 
-</ui:composition>
-</html>
+</ui:composition> </html>

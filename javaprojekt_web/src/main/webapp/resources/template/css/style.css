@@ -5,6 +5,7 @@
 }
 body{
 	font-family: 'Century Gothic',helvetica,verdana,arial;
+	color: #fff;
 	background: url("../img/bg3.avif.xhtml?ln=template") no-repeat center center fixed;
 	background-size: cover;
 	margin:0;
@@ -24,6 +25,7 @@ body{
 }
 
 .box{
+	
 	padding: 1em;
 	border-radius: 3px;
 	background-color: rgb(255, 255, 255,1);

@@ -25,7 +25,7 @@ public class AnimalListBB {
 	private static final String PAGE_ANIMAL_DETAILS = "/pages/edit/animalDetails?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-	private String title;
+	private String animal_name;
 		
 	@Inject
 	ExternalContext extcontext;
@@ -37,12 +37,12 @@ public class AnimalListBB {
 	AnimalDAO animalDAO;
 	
 		
-	public String getTitle() {
-		return title;
+	public String getAnimalName() {
+		return animal_name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setAnimalName(String animl_name) {
+		this.animal_name = animl_name;
 	}
 
 	public List<Animal> getFullList(){
@@ -55,9 +55,9 @@ public class AnimalListBB {
 		//1. Prepare search params
 		Map<String,Object> searchParams = new HashMap<String, Object>();
 		
-//		if (title != null && title.length() > 0){
-//			searchParams.put("title", title);
-//		}
+		if (animal_name != null && animal_name.length() > 0){
+			searchParams.put("animalName", animal_name);
+		}
 		
 		//2. Get list
 		list = animalDAO.getList(searchParams);

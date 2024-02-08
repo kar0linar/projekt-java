@@ -22,6 +22,7 @@ img {
 
 		<h:form>
 			<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home" />
+			<p:button outcome="/public/caretakerPage.xhtml" value="lista opiekunów" />
 
 		</h:form>
 
@@ -30,7 +31,7 @@ img {
 			<h:form>
 				<h:panelGrid columns="2" cellpadding="5">
 					<h:outputLabel value="podaj imię zwierzęcia:" />
-					<p:inputText value="" />
+					<p:inputText value="#{animalListBB.animalName}" />
 					<p:commandButton value="Szukaj" update="form-table" />
 				</h:panelGrid>
 			</h:form>
@@ -59,7 +60,7 @@ img {
 						<h:outputText value="#{a.specy.speciesName}" />
 					</p:column>
 
-					<p:column headerText="id opiekuna">
+					<p:column headerText="opiekun">
 						<h:outputText value="#{a.user.name} #{a.user.surname}" />
 					</p:column>  
 
@@ -68,13 +69,12 @@ img {
 					</p:column>
 
 					<p:column headerText="edytuj" style="text-align: center;">
-						<p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit"
-							saveTitle="Save Row" />
 
-						<p:commandButton value="Usuń"
-							action="#{animalListBB.deleteAnimal(a)}" update="@form" />
 
-						<p:button outcome="/pages/edit/animalEditGET.xhtml" value="Edytuj">
+						<p:commandButton value="Usuń" style="font-size: 12px;" action="#{animalListBB.deleteAnimal(a)}" update="@form" />
+
+
+						<p:button outcome="/pages/edit/animalEditGET.xhtml" value="Edytuj" style="font-size: 12px;">
 							<f:param name="a" value="#{a.animalId}" />
 						</p:button>
 					</p:column>

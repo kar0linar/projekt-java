@@ -16,6 +16,8 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToOne;
+
+import com.jsf.entities.Animal;
 import com.jsf.entities.Role;
 import java.util.Date;
 import java.util.Date;

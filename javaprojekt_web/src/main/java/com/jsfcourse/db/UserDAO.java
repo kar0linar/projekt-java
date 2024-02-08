@@ -6,7 +6,8 @@ import java.util.List;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
-import com.jsfcourse.entities.User;
+import com.jsf.entities.User;
+
 
 @Named
 @RequestScoped

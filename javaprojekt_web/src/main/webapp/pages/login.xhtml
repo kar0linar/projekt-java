@@ -8,14 +8,14 @@
 
 <ui:composition template="/templates/logo-template.xhtml">
 
-	<ui:define name="title">   
+	<ui:define name="title"> logowanie  
 	</ui:define>
 	
 	<ui:define name="loginpage">
 
 		<h:form>
 			<h3 style="text-align: center;margin-top:-3px">wpisz dane logowania:</h3>
-			<h:panelGrid columns="2" cellpadding="5" styleClass="bottom-space">
+			<h:panelGrid columns="2" cellpadding="5" styleClass="bottom-space" style="color: black">
 				<h:outputLabel for="login" value="podaj login:" />
 				<p:inputText id="login" value="#{loginBB.login}"
 					required="true"	requiredMessage="podaj login!"/>
@@ -25,12 +25,12 @@
 			</h:panelGrid>
 		
 		
-			<h:messages />
+			<h:messages style="color: black" />
 		
 			<h:commandButton value="zaloguj" action="#{loginBB.doLogin()}" update="msg" />
-			<!--  p:commandButton value="Załóż konto"
-					action="#{RegisterBB.registerUser()}"/
-						<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/> -->
+			<p:button value="Załóż konto" outcome="/public/register.xhtml"/>
+
+						<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/> 
 		
 
 		</h:form>

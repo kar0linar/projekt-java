@@ -15,13 +15,13 @@
 
 	<ui:define name="content">
 
-		<h:form>
-			<!-- 		    <p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/> -->
-			<p:button value="Tabela zwierząt" outcome="/public/animalPage.xhtml" />
-			<p:button value="Tabela opiekunów" outcome="/public/caretakerPage.xhtml" />
-			<p:commandButton value="Wyloguj" action="#{loginBB.doLogout}" />
-			<!--icon="pi pi-fw pi-power-off"-->
-		</h:form>
+		<h:form style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <p:button value="lista zwierząt" outcome="/public/animalPage.xhtml" />
+        <p:button value="lista opiekunów" outcome="/public/caretakerPage.xhtml" />
+    </div>
+    <p:commandButton value="Wyloguj" action="#{loginBB.doLogout}" />
+</h:form>
 
 <!-- 		<p:panel header="Szukaj filmy" toggleable="true" collapsed="true" -->
 <!-- 			style="margin-bottom: 4em;"> -->
@@ -66,12 +66,17 @@
 			</div>
 
 		</h:form>
+		
+		
+		
+		
+		
 
-		<h:form id="form-table1" style="margin-bottom:1em;">
+<!-- 		<h:form id="form-table1" style="margin-bottom:1em;"> -->
 
-			<div class="card"></div>
+<!-- 			<div class="card"></div> -->
 
-		</h:form>
+<!-- 		</h:form> -->
 	</ui:define>
 
 </ui:composition>
