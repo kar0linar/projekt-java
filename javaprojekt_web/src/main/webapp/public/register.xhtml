@@ -15,21 +15,21 @@
 			<h:panelGrid columns="3" cellpadding="5" styleClass="bottom-space"
 				style="color: black">
 				<p:outputLabel for="u-login" value="login:" />
-				<p:inputText id="u-login" value="#{UserRegisterBB.user.login}"
+				<p:inputText id="u-login" value="#{userRegisterBB.user.login}"
 					required="true" requiredMessage="podaj login" />
 
 				<p:outputLabel for="u-name" value="podaj imię:" />
-				<p:inputText id="u-name" value="#{UserRegisterBB.user.name}"
+				<p:inputText id="u-name" value="#{userRegisterBB.user.name}"
 					required="true" requiredMessage="podaj imię" />
 
 				<p:outputLabel for="u-surname" value="podaj nazwisko:" />
-				<p:inputText id="u-surname" value="#{UserRegisterBB.user.surname}"
+				<p:inputText id="u-surname" value="#{userRegisterBB.user.surname}"
 					required="true" requiredMessage="podaj nazwisko" />
 
 
 				<p:message for="u-password" globalOnly="true" />
 				<p:outputLabel for="u-password" value="hasło:" />
-				<p:password id="u-password" value="#{UserRegisterBB.user.password}"
+				<p:password id="u-password" value="#{userRegisterBB.user.password}"
 					toggleMask="true" redisplay="true" required="true"
 					requiredMessage="podaj hasło">
 				</p:password>
@@ -41,7 +41,7 @@
 			<p:messages id="msgs" globalOnly="true" />
 
 			<p:commandButton value="Zarejestruj"
-				action="#{UserRegisterBB.saveData()}" style="margin-right: 1em;"
+				action="#{userRegisterBB.saveData()}" style="margin-right: 1em;"
 				update="@form" />
 			<p:button value="Strona główna" outcome="/public/mainPage.xhtml"
 				icon="pi pi-home" />

@@ -32,46 +32,45 @@
 				<p:message for="m-title" display="icon"/>
 
 				<h:outputLabel for="m-joindate" value="data dołączenia:" />
-				<p:inputTextarea id="m-joindate" value="#{animalEditGETBB.animal.joinDate}"
-					required="true" requiredMessage="podaj datę dołącznenia" rows="5" cols="45"
-					converterMessage="niepoprawny format daty (np. 2018)">
+<!-- 				<p:inputTextarea id="m-joindate" value="#{animalEditGETBB.animal.joinDate}" -->
+<!-- 					required="true" requiredMessage="podaj datę dołącznenia" rows="5" cols="45" -->
+<!-- 					converterMessage="niepoprawny format daty (np. 2018)"> -->
+				
 					
-					<f:validateLength maximum="300" />
-				</p:inputTextarea>
+<!-- 					<f:validateLength maximum="300" /> -->
+<!-- 				</p:inputTextarea> -->
+				<p:datePicker id="m-joindate" value="#{animalEditGETBB.animal.joinDate}"
+                    inline="true" showTime="true" timeInput="true" />
 				<p:message for="m-joindate" display="icon"/>
+				
 
 				<h:outputLabel for="m-user" value="id opiekuna" />
-				<p:inputText id="m-user" value="#{animalEditGETBB.animal.user}"
-					required="true" requiredMessage="podaj id opiekuna"
-					validatorMessage="co najwyżej 300 znaków">
-			    </p:inputText>
+				<p:selectOneMenu id="m-user"
+					value="#{animalEditGETBB.userId}" alwaysDisplayLabel="true">
+					<f:selectItems value="#{caretakerListBB.list}" var="u"
+						itemLabel="#{u.name}" itemValue="#{u.id}" />
+				</p:selectOneMenu>
 				<p:message for="m-user" display="icon"/>
 				
 				<h:outputLabel for="m-category" value="kategoria:" />
-				<p:inputText id="m-category" value="#{animalEditGETBB.animal.category}"
-					required="true" requiredMessage="podaj kategorię"
-					validatorMessage="co najwyżej 40 znaków">
-					<f:validateLength maximum="40" />
-				</p:inputText>
+				<p:selectOneMenu id="m-category"
+					value="#{animalEditGETBB.categoryId}" alwaysDisplayLabel="true">
+					<f:selectItems value="#{categoryListBB.list}" var="c"
+						itemLabel="#{c.categoryName}" itemValue="#{c.categoryId}" />
+				</p:selectOneMenu>
 				<p:message for="m-category" display="icon"/>
 				
 				<h:outputLabel for="m-specy" value="gatunek:" />
-				<p:inputText id="m-specy" value="#{animalEditGETBB.animal.specy}"
-					required="true" requiredMessage="podaj gatunek:"
-					validatorMessage="co najwyżej 40 znaków">
-					<f:validateLength maximum="40" />
-				</p:inputText>
+				<p:selectOneMenu id="m-specy" 
+					value="#{animalEditGETBB.speciesId}" alwaysDisplayLabel="true">
+					<f:selectItems value="#{specyBB.list}" var="s"
+						itemLabel="#{s.speciesName}" itemValue="#{s.speciesId}" />
+				</p:selectOneMenu>
 				<p:message for="m-specy" display="icon"/>
-				
-				<p:selectOneMenu id="labeled" value="#{animalEditGETBB.animal.specy}" alwaysDisplayLabel="true" >
-      			
-                                <f:selectItems value="specyBB.list" var="s" itemLabel="s.speciesName" itemValue="s.speciesId"/>
-                                
-                
-                        </p:selectOneMenu> 
-                        <ui:repeat value="specyBB.list" var="s">
+
+								<!--                         <ui:repeat value="specyBB.list" var="s"> -->
                         
-</ui:repeat>
+<!-- </ui:repeat> -->
 
 			</h:panelGrid>
 

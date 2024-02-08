@@ -11,7 +11,7 @@ import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-import com.jsfcourse.db.UserDAO;
+import com.jsf.dao.UserDAO;
 import com.jsf.entities.User;
 
 @Named

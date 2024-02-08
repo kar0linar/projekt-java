@@ -62,7 +62,6 @@ public class SpecyBB {
 		
 		//2. Get list
 		list = specyDAO.getList(searchParams);
-		System.out.println("sraka" + list);
 		return list;
 	}
 

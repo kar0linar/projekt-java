@@ -2,6 +2,7 @@ package com.jsfcourse.user;
 
 import java.io.IOException;
 //import java.io.Serializable;
+import java.util.Date;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
@@ -59,6 +60,7 @@ public class UserRegisterBB {
 
     public String registerUser() {
         User user = new User();
+        user.setJoinDate(new Date());
         flash.put("user", user);
         return PAGE_USER_REGISTER;
     }

@@ -18,7 +18,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToOne;
 
 import com.jsf.entities.Animal;
-import com.jsf.entities.Role;
 import java.util.Date;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +33,9 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 
 	@Column(name="is_admin")
 	private byte isAdmin;
@@ -65,7 +66,7 @@ public class User implements Serializable {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
