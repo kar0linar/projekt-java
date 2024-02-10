@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+	<f:viewParam name="c" value="#{caretakerEditGETBB.user.id}"
+		converterMessage="Nieoczekiwany błąd"/>
+	<f:event type="preRenderView" listener="#{caretakerEditGETBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>super zoo</title>
+</h:head>
+<h:body style="background-image: url('src/main/webapp/resources/template/img/bg3.avif');"> 
+
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{caretakerEditGETBB.user != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+
+				<h:outputLabel for="m-name" value="imię:" />
+				<p:inputTextarea id="m-name" value="#{caretakerEditGETBB.user.name}"
+					required="true" requiredMessage="podaj imię" rows="1" cols="45"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputTextarea>
+				<p:message for="m-name" display="icon"/>
+				
+				<h:outputLabel for="m-surname" value="nazwisko:" />
+				<p:inputTextarea id="m-surname" value="#{caretakerEditGETBB.user.surname}"
+					required="true" requiredMessage="podaj nazwisko" rows="1" cols="45"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputTextarea>
+				<p:message for="m-surname" display="icon"/>
+				
+
+				<h:outputLabel for="m-joindate" value="data dołączenia:" />
+				<p:datePicker id="m-joindate" value="#{caretakerEditGETBB.user.joinDate}"/>
+				<p:message for="m-joindate" display="icon"/>
+				
+
+							
+				<h:outputLabel for="m-isadmin" value="czy admin:" />
+				<p:selectOneMenu id="m-isadmin"
+					value="#{caretakerEditGETBB.user.isAdmin}" alwaysDisplayLabel="true">
+					<f:selectItem itemValue="0" 
+						itemLabel="nie" />
+						<f:selectItem itemValue="1" 
+						itemLabel="tak" />
+				</p:selectOneMenu>
+				<p:message for="m-isadmin" display="icon"/>
+				
+				<h:outputLabel for="m-iscaretaker" value="czy opiekun:" />
+				<p:selectOneMenu id="m-iscaretaker" 
+					value="#{caretakerEditGETBB.user.isCaretaker}" alwaysDisplayLabel="true">
+					
+					<f:selectItem itemValue="0" 
+						itemLabel="nie" />
+						<f:selectItem itemValue="1" 
+						itemLabel="tak" />
+				</p:selectOneMenu>
+				<p:message for="m-iscaretaker" display="icon"/>
+
+								<!--                         <ui:repeat value="specyBB.list" var="s"> -->
+                        
+<!-- </ui:repeat> -->
+
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{caretakerEditGETBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="/public/caretakerPage" />
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+</html>

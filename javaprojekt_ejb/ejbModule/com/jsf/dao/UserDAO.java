@@ -85,17 +85,17 @@ public class UserDAO {
 		String select = "select u ";
 		String from = "from User u ";
 		String where = "";
-		String orderby = "";
+		String orderby = "order by u.surname";
 
 		// search for surid
-		String id = (String) searchParams.get("id");
-		if (id != null) {
+		String surname = (String) searchParams.get("surname");
+		if (surname != null) {
 			if (where.isEmpty()) {
 				where = "where ";
 			} else {
 				where += "and ";
 			}
-			where += "u.id like :id ";
+			where += "u.surname like :surname ";
 		}
 		
 		// ... other parameters ... 
@@ -104,8 +104,8 @@ public class UserDAO {
 		Query query = em.createQuery(select + from + where + orderby);
 
 		// 3. Set configured parameters
-		if (id != null) {
-			query.setParameter("id", id+"%");
+		if (surname != null) {
+			query.setParameter("surname", surname +"%");
 		}
 
 		// ... other parameters ... 
@@ -129,48 +129,46 @@ public class UserDAO {
 	            return null;
 	        }
 	    }
-	  public User getUserFromDatabase(String login, String pass) {
+	 
+	public User getUserFromDatabase(String login, String password) {
 
-	        User u = null;
+		try {
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.login = :login and u.password = :password");
+            query.setParameter("login", login);
+            query.setParameter("password", password);
+            return (User) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+	}
 
-	        if (login.equals("user") && pass.equals("user")) {
-	            u = new User();
-	            u.setLogin(login);
-	            u.setPassword(pass);
-	        }
-
-	        if (login.equals("manager") && pass.equals("manager")) {
-	            u = new User();
-	            u.setLogin(login);
-	            u.setPassword(pass);
-	        }
-
-	        if (login.equals("admin") && pass.equals("admin")) {
-	            u = new User();
-	            u.setLogin(login);
-	            u.setPassword(pass);
-	        }
-
-	        return u;
-	    }
+//	  public User getUserFromDatabase(String login, String pass) {
+//
+//	        User u = null;
+//
+//	        if (login.equals("user") && pass.equals("user")) {
+//	            u = new User();
+//	            u.setLogin(login);
+//	            u.setPassword(pass);
+//	        }
+//
+//	        if (login.equals("manager") && pass.equals("manager")) {
+//	            u = new User();
+//	            u.setLogin(login);
+//	            u.setPassword(pass);
+//	        }
+//
+//	        if (login.equals("admin") && pass.equals("admin")) {
+//	            u = new User();
+//	            u.setLogin(login);
+//	            u.setPassword(pass);
+//	        }
+//
+//	        return u;
+//	    }
 
 	    // simulate retrieving roles of a User from DB
-	    public List<String> getUserRolesFromDatabase(User user) {
-
-	        ArrayList<String> roles = new ArrayList<String>();
-
-	        if (user.getLogin().equals("user")) {
-	            roles.add("user");
-	        }
-	        if (user.getLogin().equals("manager")) {
-	            roles.add("manager");
-	        }
-	        if (user.getLogin().equals("admin")) {
-	            roles.add("admin");
-	        }
-
-	        return roles;
-	    }
+	   
 	}
 
 

@@ -82,11 +82,11 @@ public class AnimalEditGETBB implements Serializable {
 	}
 	
 
-	public void onLoad() throws IOException {
+	public void onLoad() throws IOException {		
 		if (!context.isPostback()) {
 			
-			if (!context.isValidationFailed() && animal.getAnimalId() != null) {
-							
+			if (animal.getAnimalId() != null) {
+				
 				loaded = animalDAO.find(animal.getAnimalId());
 				userId=loaded.getUser().getId().toString();
 				categoryId=loaded.getCategory().getCategoryId().toString();
@@ -95,11 +95,14 @@ public class AnimalEditGETBB implements Serializable {
 			}
 			if (loaded != null) {
 				animal = loaded;
+				
+			
 				userId=animal.getUser().getId().toString();
 				categoryId=animal.getCategory().getCategoryId().toString();
 				speciesId=animal.getSpecy().getSpeciesId().toString();
+			
 			} else {
-				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błędne użycie systemu", null));
+//				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błędne użycie systemu", null));
 //				 if (!context.isPostback()) { // possible redirect
 //				 context.getExternalContext().redirect("personList.xhtml");
 //				 context.responseComplete();
@@ -112,7 +115,7 @@ public class AnimalEditGETBB implements Serializable {
 	public String saveData() {
 		
 		// no Person object passed
-		if (loaded == null) {
+		if (animal == null) {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
@@ -128,9 +131,10 @@ public class AnimalEditGETBB implements Serializable {
 			animal.setCategory(category);
 			animal.setSpecy(specy);
 			
-			
+			System.out.println("test");
 			if (animal.getAnimalId() == null) {
 				// new record
+				System.out.println("test2");
 				animalDAO.create(animal);
 			} else {
 				// existing record

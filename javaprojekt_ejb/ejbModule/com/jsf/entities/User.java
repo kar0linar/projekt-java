@@ -38,10 +38,10 @@ public class User implements Serializable {
 
 
 	@Column(name="is_admin")
-	private byte isAdmin;
+	private Boolean isAdmin;
 
 	@Column(name="is_caretaker")
-	private byte isCaretaker;
+	private Boolean isCaretaker;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="join_date")
@@ -70,19 +70,19 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public byte getIsAdmin() {
+	public Boolean getIsAdmin() {
 		return this.isAdmin;
 	}
 
-	public void setIsAdmin(byte isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setIsAdmin(Boolean isAdmin2) {
+		this.isAdmin = isAdmin2;
 	}
 
-	public byte getIsCaretaker() {
+	public Boolean getIsCaretaker() {
 		return this.isCaretaker;
 	}
 
-	public void setIsCaretaker(byte isCaretaker) {
+	public void setIsCaretaker(Boolean isCaretaker) {
 		this.isCaretaker = isCaretaker;
 	}
 

@@ -30,10 +30,10 @@
       <param-value>
 /jakarta.faces.resource : PUBLIC;
 /public : PUBLIC;
-/pages : admin;
-/pages/admin : admin;
-/pages/manager : admin, manager;
-/pages/edit : admin, manager;
+/pages : PUBLIC;
+/pages/admin : PUBLIC;
+/pages/manager : PUBLIC;
+/pages/edit : PUBLIC;
 			</param-value>
     </init-param>
     <init-param>

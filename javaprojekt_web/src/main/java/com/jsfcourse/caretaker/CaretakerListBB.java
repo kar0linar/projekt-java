@@ -25,7 +25,7 @@ public class CaretakerListBB {
 	private static final String PAGE_USER_DETAILS = "/pages/edit/userDetails?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-	private String title;
+	private String surname;
 		
 	@Inject
 	ExternalContext extcontext;
@@ -37,12 +37,12 @@ public class CaretakerListBB {
 	UserDAO userDAO;
 	
 		
-	public String getTitle() {
-		return title;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public List<User> getFullList(){
@@ -55,9 +55,9 @@ public class CaretakerListBB {
 		//1. Prepare search params
 		Map<String,Object> searchParams = new HashMap<String, Object>();
 		
-//		if (title != null && title.length() > 0){
-//			searchParams.put("title", title);
-//		}
+		if (surname != null && surname.length() > 0){
+			searchParams.put("surname", surname);
+		}
 		
 		//2. Get list
 		list = userDAO.getList(searchParams);

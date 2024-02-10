@@ -31,11 +31,18 @@
 			<h:form>
 				<h:panelGrid columns="2" cellpadding="5">
 					<h:outputLabel value="podaj nazwisko opiekuna:" />
-					<p:inputText value="" />
+					<p:inputText value="#{caretakerListBB.surname}" />
 					<p:commandButton value="Szukaj" update="form-table" />
 				</h:panelGrid>
 			</h:form>
 		</p:panel>
+		
+		<div class="grid mt-3">
+			<div class="col-12">
+
+				
+			</div>
+		</div>
 
 		<div class="card">
 			<h:form id="form-table">
@@ -48,25 +55,34 @@
 						<h:outputText value="#{c.id}" />
 					</p:column>
 
-					<p:column headerText="imię">
-						<h:outputText value="#{c.name}" />
+					<p:column headerText="imię i nazwisko">
+						<h:outputText value="#{c.name} #{c.surname}" />
 					</p:column>
 
-					<p:column headerText="nazwisko">
-						<h:outputText value="#{c.surname}" />
-					</p:column>  
+					<p:column headerText="data zatrudnienia">
+						<h:outputText value="#{c.joinDate}" />
+					</p:column> 
+					
+					<p:column headerText="czy admin">
+						<h:outputText value="#{c.isAdmin ? 'tak' : 'nie'}" />
+					</p:column> 
+					
+					<p:column headerText="czy opiekun">
+						<h:outputText value="#{c.isCaretaker ? 'tak' : 'nie'}" />
+					</p:column> 
 
 
 					<p:column headerText="edytuj" style="text-align: center;">
 <!-- 						<p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" -->
 <!-- 							saveTitle="Save Row" /> -->
 
-						<p:commandButton value="Usuń"
-							action="#{caretakerListBB.deleteAnimal(a)}" update="@form" />
+						<p:commandButton value="Usuń" style="font-size: 12px;"
+							action="#{caretakerListBB.deleteUser(c)}" update="@form" />
+						<p:button outcome="/pages/edit/userEditGETBB.xhtml" value="Edytuj"
+							style="font-size: 12px;">
+							<f:param name="c" value="#{c.id}" />
+						</p:button>
 
-<!-- 						<p:button outcome="/pages/edit/caretakerEditGET.xhtml" value="Edytuj"> -->
-<!-- 							<f:param name="c" value="#{c.id}" /> -->
-<!-- 						</p:button> -->
 					</p:column>
 
 				</p:dataTable>

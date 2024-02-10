@@ -4,7 +4,10 @@ import java.util.List;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.Flash;
+import jakarta.faces.event.ActionEvent;
 import jakarta.faces.simplesecurity.RemoteClient;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -22,8 +25,20 @@ public class LoginBB {
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String login;
-	private String pass;
+	private String password;
 
+	@Inject
+    ExternalContext extcontext;
+
+    @Inject
+    FacesContext context;
+
+    @Inject
+    Flash flash;
+
+    @Inject
+    UserDAO userDAO;
+    
 	public String getLogin() {
 		return login;
 	}
@@ -33,21 +48,19 @@ public class LoginBB {
 	}
 
 	public String getPass() {
-		return pass;
+		return password;
 	}
 
 	public void setPass(String pass) {
-		this.pass = pass;
+		this.password = pass;
 	}
-
-	@Inject
-	UserDAO userDAO;
-
+	
+	
 	public String doLogin() {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 
 		// 1. verify login and password - get User from "database"
-		User user = userDAO.getUserFromDatabase(login, pass);
+		User user = userDAO.getUserFromDatabase(login, password);
 
 		// 2. if bad login or password - stay with error info
 		if (user == null) {
@@ -61,29 +74,31 @@ public class LoginBB {
 		RemoteClient<User> client = new RemoteClient<User>(); //create new RemoteClient
 		client.setDetails(user);
 		
-		List<String> roles = userDAO.getUserRolesFromDatabase(user); //get User roles 
-		
-		if (roles != null) { //save roles in RemoteClient
-			for (String role: roles) {
-				client.getRoles().add(role);
-			}
-		}
-	
 		//store RemoteClient with request info in session (needed for SecurityFilter)
 		HttpServletRequest request = (HttpServletRequest) ctx.getExternalContext().getRequest();
 		client.store(request);
-
+		
+		HttpSession session = (HttpSession) ctx.getExternalContext().getSession(true);
+		session.setAttribute("id", user.getId());
+		session.setAttribute("login", user.getLogin());
+		session.setAttribute("name", user.getName());
+		session.setAttribute("surname", user.getSurname());
+		session.setAttribute("isAdmin", user.getIsAdmin());
 		// and enter the system (now SecurityFilter will pass the request)
 		return PAGE_MAIN;
 	}
 	
 	public String doLogout(){
+		
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-				.getExternalContext().getSession(true);
-		//Invalidate session
-		// - all objects within session will be destroyed
-		// - new session will be created (with new ID)
-		session.invalidate();
+				.getExternalContext().getSession(false);
+//		Invalidate session
+//		 - all objects within session will be destroyed
+//		 - new session will be created (with new ID)
+		if(session != null){
+			System.out.println((String) session.getAttribute("name"));
+			session.invalidate();
+		}
 		return PAGE_LOGIN;
 	}
 	

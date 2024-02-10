@@ -26,12 +26,14 @@
 		
 		
 			<h:messages style="color: black" />
-		
-			<h:commandButton value="zaloguj" action="#{loginBB.doLogin()}" update="msg" />
-			<p:button value="Załóż konto" outcome="/public/register.xhtml"/>
 
-						<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/> 
-		
+			<h:commandButton value="zaloguj" action="#{loginBB.doLogin()}"
+				update="msg" />
+			<br /><br />
+			<p:button value="utwórz konto" outcome="/public/register.xhtml" />
+
+
+
 
 		</h:form>
 

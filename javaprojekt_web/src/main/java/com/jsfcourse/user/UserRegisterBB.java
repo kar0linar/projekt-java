@@ -92,6 +92,7 @@ public class UserRegisterBB {
 
             // If the user doesn't exist, proceed with saving
             if (user.getId() == null) {
+            	user.setJoinDate(new Date());
                 userDAO.create(user);
             } else {
                 userDAO.merge(user);
