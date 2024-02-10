@@ -29,110 +29,51 @@ public class CaretakerEditGETBB implements Serializable {
 
 	private User user = new User();
 	private User loaded = null;
-	
+
 	private String isAdmin;
-	
-//	private String userId;
-//	private String categoryId;
-//	private String speciesId;
-	
+
 	@Inject
 	FacesContext context;
 
 	@EJB
 	UserDAO userDAO;
-	
-//	@EJB
-//	private CategoryDAO categoryDAO;
-//	
-//	@EJB
-//	private UserDAO userDAO;
-//	
-//	@EJB
-//	private SpecyDAO specyDAO;
 
 	public User getUser() {
 		return user;
 	}
-	
+
 	public void setUser(User user) {
-		this.user=user;
+		this.user = user;
 	}
-	
-	
-	
-//	public String getUserIsAdmin) {
-//		return userId;
-//	}
-//	
-//	public void setUserId(String userId) {
-//		this.userId=userId;
-//	}
-//	
-//	public String getCategoryId() {
-//		return categoryId;
-//	}
-//	
-//	public void setCategoryId(String categoryId) {
-//		this.categoryId=categoryId;
-//	}
-//	
-//	public String getSpeciesId() {
-//		return speciesId;
-//	}
-//	
-//	public void setSpeciesId(String speciesId) {
-//		this.speciesId=speciesId;
-//	}
-	
 
 	public void onLoad() throws IOException {
 		if (!context.isPostback()) {
-			
-			if ( user.getId() != null) {
-				System.out.println(user);			
+
+			if (user.getId() != null) {
+				System.out.println(user);
 				loaded = userDAO.find(user.getId());
-//				userId=loaded.getUser().getId().toString();
-//				categoryId=loaded.getCategory().getCategoryId().toString();
-//				speciesId=loaded.getSpecy().getSpeciesId().toString();
-				
+
 			}
 			if (loaded != null) {
 				user = loaded;
-//				userId=user.getUser().getId().toString();
-//				categoryId=user.getCategory().getCategoryId().toString();
-//				speciesId=user.getSpecy().getSpeciesId().toString();
+
 			} else {
 				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błędne użycie systemu", null));
-//				 if (!context.isPostback()) { // possible redirect
-//				 context.getExternalContext().redirect("personList.xhtml");
-//				 context.responseComplete();
-//				 }
+
 			}
 		}
 
 	}
 
 	public String saveData() {
-		
+
 		// no Person object passed
 		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
-		
-		
 		try {
-			
-//			User user = userDAO.find(Integer.parseInt(userId));
-//			Category category = categoryDAO.find(Integer.parseInt(categoryId));
-//			Specy specy = specyDAO.find(Integer.parseInt(speciesId));
-//			
-//			user.setUser(user);
-//			user.setCategory(category);
-//			user.setSpecy(specy);
-			
-			
+
 			if (user.getId() == null) {
 				// new record
 				userDAO.create(user);

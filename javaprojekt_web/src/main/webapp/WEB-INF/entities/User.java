@@ -52,7 +52,6 @@ public class User implements Serializable {
 
 	private String surname;
 
-	//bi-directional many-to-one association to Animal
 	@OneToMany(mappedBy="user")
 	private List<Animal> animals;
 

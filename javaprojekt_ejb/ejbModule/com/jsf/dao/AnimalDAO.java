@@ -10,9 +10,6 @@ import jakarta.persistence.Query;
 
 import com.jsf.entities.Animal;
 
-//DAO - Data Access Object for Person entity
-//Designed to serve as an interface between higher layers of application and data.
-//Implemented as stateless Enterprise Java bean - server side code that can be invoked even remotely.
 
 @Stateless
 public class AnimalDAO {
@@ -82,7 +79,6 @@ public class AnimalDAO {
 			query.setParameter("animalName", animal_name+"%");
 		}
 
-		// ... other parameters ... 
 
 		// 4. Execute query and retrieve list of Person objects
 		try {

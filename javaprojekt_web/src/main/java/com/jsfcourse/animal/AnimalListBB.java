@@ -26,17 +26,16 @@ public class AnimalListBB {
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String animal_name;
-		
+
 	@Inject
 	ExternalContext extcontext;
-	
+
 	@Inject
 	Flash flash;
-	
+
 	@EJB
 	AnimalDAO animalDAO;
-	
-		
+
 	public String getAnimalName() {
 		return animal_name;
 	}
@@ -45,65 +44,54 @@ public class AnimalListBB {
 		this.animal_name = animl_name;
 	}
 
-	public List<Animal> getFullList(){
+	public List<Animal> getFullList() {
 		return animalDAO.getFullList();
 	}
 
-	public List<Animal> getList(){
+	public List<Animal> getList() {
 		List<Animal> list = null;
-		
-		//1. Prepare search params
-		Map<String,Object> searchParams = new HashMap<String, Object>();
-		
-		if (animal_name != null && animal_name.length() > 0){
+
+		// 1. Prepare search params
+		Map<String, Object> searchParams = new HashMap<String, Object>();
+
+		if (animal_name != null && animal_name.length() > 0) {
 			searchParams.put("animalName", animal_name);
 		}
-		
-		//2. Get list
+
+		// 2. Get list
 		list = animalDAO.getList(searchParams);
-		
+
 		return list;
 	}
 
-	public String newAnimal(){
+	public String newAnimal() {
 		Animal animal = new Animal();
-		
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash	
+
+		// 2. Pass object through flash
 		flash.put("animal", animal);
-		
+
 		return PAGE_ANIMAL_EDIT;
 	}
 
-	public String editAnimal(Animal animal){
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash 
+	public String editAnimal(Animal animal) {
+
+		// 2. Pass object through flash
 		flash.put("animal", animal);
-		
+
 		return PAGE_ANIMAL_EDIT;
 	}
-	
-	public String showAnimal(Animal animal){
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash 
+
+	public String showAnimal(Animal animal) {
+
+		// 2. Pass object through flash
 		flash.put("animal", animal);
-		
+
 		return PAGE_ANIMAL_DETAILS;
 	}
 
-	public String deleteAnimal(Animal animal){
+	public String deleteAnimal(Animal animal) {
 		animalDAO.remove(animal);
 		return PAGE_STAY_AT_THE_SAME;
 	}
-	
-	
+
 }

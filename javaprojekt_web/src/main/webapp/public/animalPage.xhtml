@@ -15,19 +15,19 @@ img {
 <ui:composition template="/templates/view-template.xhtml">
 
 	<ui:define name="title">
-	tabela zwierzęt
+	tabela zwierząt
 	</ui:define>
 
 	<ui:define name="content">
 
 		<h:form>
-			<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home" />
+			<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home" style ="margin-right: 10px" />
 			<p:button outcome="/public/caretakerPage.xhtml" value="lista opiekunów" />
 
 		</h:form>
 
 		<p:panel header="wyszukiwarka zwierząt" toggleable="true"
-			collapsed="true" style="margin-bottom: 4em;">
+			collapsed="true" style="margin-bottom: 4em; margin-top: 2em">
 			<h:form>
 				<h:panelGrid columns="2" cellpadding="5">
 					<h:outputLabel value="podaj imię zwierzęcia:" />
@@ -83,7 +83,7 @@ img {
 					<p:column headerText="edytuj" style="text-align: center;">
 
 
-						<p:commandButton value="Usuń" style="font-size: 12px;" action="#{animalListBB.deleteAnimal(a)}" update="@form" />
+						<p:commandButton value="Usuń" style="font-size: 12px; margin-right: 10px" action="#{animalListBB.deleteAnimal(a)}" update="@form" />
 
 
 						<p:button outcome="/pages/edit/animalEditGET.xhtml" value="Edytuj" style="font-size: 12px;">

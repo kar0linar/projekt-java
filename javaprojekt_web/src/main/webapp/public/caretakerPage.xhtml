@@ -20,14 +20,14 @@
 	<ui:define name="content">
 
 		<h:form>
-			<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home" />
+			<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home " style ="margin-right: 10px" />
 			<p:button outcome="/public/animalPage.xhtml" value="lista zwierząt" />
 			
 
 		</h:form>
 
 		<p:panel header="wyszukiwarka opiekunów" toggleable="true"
-			collapsed="true" style="margin-bottom: 4em;">
+			collapsed="true" style="margin-bottom: 4em;margin-top: 2em">
 			<h:form>
 				<h:panelGrid columns="2" cellpadding="5">
 					<h:outputLabel value="podaj nazwisko opiekuna:" />
@@ -73,10 +73,9 @@
 
 
 					<p:column headerText="edytuj" style="text-align: center;">
-<!-- 						<p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" -->
-<!-- 							saveTitle="Save Row" /> -->
 
-						<p:commandButton value="Usuń" style="font-size: 12px;"
+
+						<p:commandButton value="Usuń" style="font-size: 12px; margin-right: 10px"
 							action="#{caretakerListBB.deleteUser(c)}" update="@form" />
 						<p:button outcome="/pages/edit/userEditGETBB.xhtml" value="Edytuj"
 							style="font-size: 12px;">

@@ -77,7 +77,7 @@
   </mime-mapping>
   
 	<welcome-file-list>
-		<welcome-file>mainPage.xhtml</welcome-file>
+		<welcome-file>login.xhtml</welcome-file>
 	</welcome-file-list>
   
     <error-page>

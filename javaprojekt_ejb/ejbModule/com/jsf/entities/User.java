@@ -22,13 +22,12 @@ import java.util.Date;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the user database table.
  * 
  */
 @Entity
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -36,15 +35,14 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-
-	@Column(name="is_admin")
+	@Column(name = "is_admin")
 	private Boolean isAdmin;
 
-	@Column(name="is_caretaker")
+	@Column(name = "is_caretaker")
 	private Boolean isCaretaker;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="join_date")
+	@Column(name = "join_date")
 	private Date joinDate;
 
 	private String login;
@@ -55,8 +53,7 @@ public class User implements Serializable {
 
 	private String surname;
 
-	//bi-directional many-to-one association to Animal
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy = "user")
 	private List<Animal> animals;
 
 	public User() {

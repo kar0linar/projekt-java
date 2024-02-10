@@ -26,17 +26,16 @@ public class CategoryListBB {
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String title;
-		
+
 	@Inject
 	ExternalContext extcontext;
-	
+
 	@Inject
 	Flash flash;
-	
+
 	@EJB
 	CategoryDAO categoryDAO;
-	
-		
+
 	public String getTitle() {
 		return title;
 	}
@@ -45,65 +44,45 @@ public class CategoryListBB {
 		this.title = title;
 	}
 
-	public List<Category> getFullList(){
+	public List<Category> getFullList() {
 		return categoryDAO.getFullList();
 	}
 
-	public List<Category> getList(){
+	public List<Category> getList() {
 		List<Category> list = null;
-		
-		//1. Prepare search params
-		Map<String,Object> searchParams = new HashMap<String, Object>();
-		
-//		if (title != null && title.length() > 0){
-//			searchParams.put("title", title);
-//		}
-		
-		//2. Get list
+
+		Map<String, Object> searchParams = new HashMap<String, Object>();
+
 		list = categoryDAO.getList(searchParams);
-		
+
 		return list;
 	}
 
-	public String newCategory(){
+	public String newCategory() {
 		Category category = new Category();
-		
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash	
+
 		flash.put("category", category);
-		
+
 		return PAGE_CATEGORY_EDIT;
 	}
 
-	public String editCategory(Category category){
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash 
+	public String editCategory(Category category) {
+
 		flash.put("category", category);
-		
+
 		return PAGE_CATEGORY_EDIT;
 	}
-	
-	public String showCategory(Category category){
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash 
+
+	public String showCategory(Category category) {
+
 		flash.put("category", category);
-		
+
 		return PAGE_CATEGORY_DETAILS;
 	}
 
-	public String deleteCategory(Category category){
+	public String deleteCategory(Category category) {
 		categoryDAO.remove(category);
 		return PAGE_STAY_AT_THE_SAME;
 	}
-	
-	
+
 }

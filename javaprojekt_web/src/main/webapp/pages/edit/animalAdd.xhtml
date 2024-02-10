@@ -11,65 +11,70 @@
 </f:metadata>
 
 <h:head>
-	<meta charset="utf-8"/>
+	<meta charset="utf-8" />
 	<title>super zoo</title>
 </h:head>
-<h:body style="background-image: url('src/main/webapp/resources/template/img/bg3.avif');"> 
+<h:body
+	style='background: url(https://images.unsplash.com/photo-1602491453439-8f207298a202) no-repeat center center fixed ; background-size: cover; min-height: 80vh'>
 
-	<p:panel toggleable="true" header="Edycja rekordu">
+	<p:panel
+		style="max-width: 40%; margin: 20px !important; transform: translateY(20px) "
+		toggleable="true" header="Dodawanie rekordu">
 
 		<h:form rendered="#{animalEditGETBB.animal != null}">
 			<h:panelGrid columns="3" cellpadding="5">
 
 				<h:outputLabel for="m-title" value="imię:" />
-				<p:inputTextarea id="m-title" value="#{animalEditGETBB.animal.animalName}"
-					required="true" requiredMessage="podaj imię" rows="1" cols="45"
+				<p:inputTextarea id="m-title"
+					value="#{animalEditGETBB.animal.animalName}" required="true"
+					requiredMessage="podaj imię" rows="1" cols="45"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
 				</p:inputTextarea>
-				<p:message for="m-title" display="icon"/>
+				<p:message for="m-title" display="icon" />
 
 				<h:outputLabel for="m-joindate" value="data dołączenia:" />
-				<p:datePicker id="m-joindate" value="#{animalEditGETBB.animal.joinDate}"/>
-				<p:message for="m-joindate" display="icon"/>
-				
+				<p:datePicker id="m-joindate"
+					value="#{animalEditGETBB.animal.joinDate}" />
+				<p:message for="m-joindate" display="icon" />
+
 
 				<h:outputLabel for="m-user" value="id opiekuna" />
-				<p:selectOneMenu id="m-user"
-					value="#{animalEditGETBB.userId}" alwaysDisplayLabel="true">
+				<p:selectOneMenu id="m-user" value="#{animalEditGETBB.userId}"
+					alwaysDisplayLabel="true">
 					<f:selectItems value="#{caretakerListBB.list}" var="u"
 						itemLabel="#{u.name}" itemValue="#{u.id}" />
 				</p:selectOneMenu>
-				<p:message for="m-user" display="icon"/>
-				
+				<p:message for="m-user" display="icon" />
+
 				<h:outputLabel for="m-category" value="kategoria:" />
 				<p:selectOneMenu id="m-category"
 					value="#{animalEditGETBB.categoryId}" alwaysDisplayLabel="true">
 					<f:selectItems value="#{categoryListBB.list}" var="c"
 						itemLabel="#{c.categoryName}" itemValue="#{c.categoryId}" />
 				</p:selectOneMenu>
-				<p:message for="m-category" display="icon"/>
-				
+				<p:message for="m-category" display="icon" />
+
 				<h:outputLabel for="m-specy" value="gatunek:" />
-				<p:selectOneMenu id="m-specy" 
-					value="#{animalEditGETBB.speciesId}" alwaysDisplayLabel="true">
+				<p:selectOneMenu id="m-specy" value="#{animalEditGETBB.speciesId}"
+					alwaysDisplayLabel="true">
 					<f:selectItems value="#{specyBB.list}" var="s"
 						itemLabel="#{s.speciesName}" itemValue="#{s.speciesId}" />
 				</p:selectOneMenu>
-				<p:message for="m-specy" display="icon"/>
+				<p:message for="m-specy" display="icon" />
 
-								<!--                         <ui:repeat value="specyBB.list" var="s"> -->
-                        
-<!-- </ui:repeat> -->
 
 			</h:panelGrid>
 
 			<p:messages id="msgs" />
 
-			<p:commandButton value="Zapisz" action="#{animalEditGETBB.saveData()}"
-				style="margin-right: 1em;" update="@form" />
+			<p:commandButton value="Zapisz"
+				action="#{animalEditGETBB.saveData()}"
+				style="margin-right: 1em; background-color: rgb(225,66,84); border: none"
+				update="@form" />
 
-			<p:button value="Anuluj" outcome="/public/animalPage" />
+			<p:button value="Anuluj" outcome="/public/animalPage"
+				style="margin-right: 1em; background-color: rgb(225,66,84);border: none" />
 		</h:form>
 
 	</p:panel>

@@ -22,96 +22,87 @@ import com.jsf.entities.User;
 @Named
 @RequestScoped
 public class RegisterBB {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private static final String PAGE_USER_REGISTER = "/public/register?faces-redirect=true";
-    private static final String PAGE_USER_LOGIN = "/pages/login?faces-redirect=true";
-    private static final String PAGE_STAY_AT_THE_SAME = null;
+	private static final String PAGE_USER_REGISTER = "/public/register?faces-redirect=true";
+	private static final String PAGE_USER_LOGIN = "/pages/login?faces-redirect=true";
+	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-    private User user = new User();
-    private User loaded = null;
-//    private String login;
-//    private String password;
+	private User user = new User();
+	private User loaded = null;
 
-    @Inject
-    ExternalContext extcontext;
+	@Inject
+	ExternalContext extcontext;
 
-    @Inject
-    FacesContext context;
+	@Inject
+	FacesContext context;
 
-    @Inject
-    Flash flash;
+	@Inject
+	Flash flash;
 
-    @Inject
-    UserDAO userDAO;
+	@Inject
+	UserDAO userDAO;
 
-    public User getUser() {
-        return user;
-    }
+	public User getUser() {
+		return user;
+	}
 
-//    public String getLogin() {
-//        return login;
-//    }
-//
-//    public void setLogin(String login) {
-//        this.login = login;
-//    }
+	public String registerUser() {
+		User user = new User();
+		flash.put("user", user);
+		return PAGE_USER_REGISTER;
+	}
 
-    public String registerUser() {
-        User user = new User();
-        flash.put("user", user);
-        return PAGE_USER_REGISTER;
-    }
-    public void onLoad() throws IOException {
-        loaded = (User) flash.get("user");
+	public void onLoad() throws IOException {
+		loaded = (User) flash.get("user");
 
-        if (loaded != null) {
-            user = loaded;
-        } else {
-        }
-    }
+		if (loaded != null) {
+			user = loaded;
+		} else {
+		}
+	}
 
-    public String saveData() {
-        // no Person object passed
-        if (loaded == null) {
-            loaded = user;
-        }
+	public String saveData() {
 
-        try {
-            // Check if the user with the provided login already exists
-            User existingUser = userDAO.findUserByLogin(user.getLogin());
+		if (loaded == null) {
+			loaded = user;
+		}
 
-            if (existingUser != null) {
-                // User with the provided login already exists, add a faces message
-                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Użytkownik o podanym loginie już istnieje!", null);
-                context.addMessage(null, message);
-                return PAGE_STAY_AT_THE_SAME; // Stay on the same page
-            }
+		try {
 
-            // If the user doesn't exist, proceed with saving
-            if (user.getId() == null) {
-                userDAO.create(user);
-            } else {
-                userDAO.merge(user);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            context.addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wystąpił błąd podczas zapisu bb", null));
-            return PAGE_STAY_AT_THE_SAME;
-        }
-        return PAGE_USER_LOGIN;
-    }
+			User existingUser = userDAO.findUserByLogin(user.getLogin());
 
-    @FacesValidator("permissionValidator")
-    public static class PermissionValidator implements Validator<String> {
+			if (existingUser != null) {
 
-        @Override
-        public void validate(FacesContext context, UIComponent component, String value) throws ValidatorException {
-            if (value != null && !(value.equals("user") || value.equals("admin"))) {
-                FacesMessage message = new FacesMessage("Dozwolone wartości to 'user' lub 'admin'");
-                throw new ValidatorException(message);
-            }
-        }
-    }
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Użytkownik o podanym loginie już istnieje!", null);
+				context.addMessage(null, message);
+				return PAGE_STAY_AT_THE_SAME; // Stay on the same page
+			}
+
+			if (user.getId() == null) {
+				userDAO.create(user);
+			} else {
+				userDAO.merge(user);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			context.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wystąpił błąd podczas zapisu bb", null));
+			return PAGE_STAY_AT_THE_SAME;
+		}
+		return PAGE_USER_LOGIN;
+	}
+
+	@FacesValidator("permissionValidator")
+	public static class PermissionValidator implements Validator<String> {
+
+		@Override
+		public void validate(FacesContext context, UIComponent component, String value) throws ValidatorException {
+			if (value != null && !(value.equals("user") || value.equals("admin"))) {
+				FacesMessage message = new FacesMessage("Dozwolone wartości to 'user' lub 'admin'");
+				throw new ValidatorException(message);
+			}
+		}
+	}
 }

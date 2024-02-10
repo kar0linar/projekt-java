@@ -28,17 +28,17 @@ public class LoginBB {
 	private String password;
 
 	@Inject
-    ExternalContext extcontext;
+	ExternalContext extcontext;
 
-    @Inject
-    FacesContext context;
+	@Inject
+	FacesContext context;
 
-    @Inject
-    Flash flash;
+	@Inject
+	Flash flash;
 
-    @Inject
-    UserDAO userDAO;
-    
+	@Inject
+	UserDAO userDAO;
+
 	public String getLogin() {
 		return login;
 	}
@@ -54,52 +54,41 @@ public class LoginBB {
 	public void setPass(String pass) {
 		this.password = pass;
 	}
-	
-	
+
 	public String doLogin() {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 
-		// 1. verify login and password - get User from "database"
 		User user = userDAO.getUserFromDatabase(login, password);
 
-		// 2. if bad login or password - stay with error info
 		if (user == null) {
-			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"niepoprawny login lub hasło!", null));
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "niepoprawny login lub hasło!", null));
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
-		// 3. if logged in: get User roles, save in RemoteClient and store it in session
-		
-		RemoteClient<User> client = new RemoteClient<User>(); //create new RemoteClient
+		RemoteClient<User> client = new RemoteClient<User>(); // create new RemoteClient
 		client.setDetails(user);
-		
-		//store RemoteClient with request info in session (needed for SecurityFilter)
+
 		HttpServletRequest request = (HttpServletRequest) ctx.getExternalContext().getRequest();
 		client.store(request);
-		
+
 		HttpSession session = (HttpSession) ctx.getExternalContext().getSession(true);
 		session.setAttribute("id", user.getId());
 		session.setAttribute("login", user.getLogin());
 		session.setAttribute("name", user.getName());
 		session.setAttribute("surname", user.getSurname());
 		session.setAttribute("isAdmin", user.getIsAdmin());
-		// and enter the system (now SecurityFilter will pass the request)
 		return PAGE_MAIN;
 	}
-	
-	public String doLogout(){
-		
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-				.getExternalContext().getSession(false);
-//		Invalidate session
-//		 - all objects within session will be destroyed
-//		 - new session will be created (with new ID)
-		if(session != null){
+
+	public String doLogout() {
+
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+
+		if (session != null) {
 			System.out.println((String) session.getAttribute("name"));
 			session.invalidate();
 		}
 		return PAGE_LOGIN;
 	}
-	
+
 }

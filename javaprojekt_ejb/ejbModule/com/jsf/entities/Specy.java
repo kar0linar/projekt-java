@@ -19,10 +19,7 @@ import jakarta.persistence.ManyToOne;
 import java.util.Date;
 
 
-/**
- * The persistent class for the species database table.
- * 
- */
+
 @Entity
 @Table(name="species")
 @NamedQuery(name="Specy.findAll", query="SELECT s FROM Specy s")
@@ -36,7 +33,6 @@ public class Specy implements Serializable {
 	@Column(name="species_name")
 	private String speciesName;
 
-	//bi-directional many-to-one association to Animal
 	@OneToMany(mappedBy="specy")
 	private List<Animal> animals;
 

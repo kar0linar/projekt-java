@@ -30,8 +30,6 @@ public class UserBB {
 
     private User user = new User();
     private User loaded = null;
-//    private String login;
-//    private String password;
 
     @Inject
     ExternalContext extcontext;
@@ -53,13 +51,7 @@ public class UserBB {
         this.user = user;
     }
 
-//    public String getLogin() {
-//        return login;
-//    }
-//
-//    public void setLogin(String login) {
-//        this.login = login;
-//    }
+
 
     
     public void onLoad() throws IOException {

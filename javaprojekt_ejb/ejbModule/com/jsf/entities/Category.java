@@ -18,31 +18,25 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToOne;
 import java.util.Date;
 
-
-/**
- * The persistent class for the category database table.
- * 
- */
 @Entity
 @Table(name = "category")
-@NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
+@NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="category_id")
+	@Column(name = "category_id")
 	private Integer categoryId;
 
-	@Column(name="category_description")
+	@Column(name = "category_description")
 	private String categoryDescription;
 
-	@Column(name="category_name")
+	@Column(name = "category_name")
 	private String categoryName;
 
 	private String picture;
 
-	//bi-directional many-to-one association to Animal
-	@OneToMany(mappedBy="category")
+	@OneToMany(mappedBy = "category")
 	private List<Animal> animals;
 
 	public Category() {

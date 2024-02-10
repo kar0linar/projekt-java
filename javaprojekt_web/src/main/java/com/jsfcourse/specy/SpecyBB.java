@@ -27,17 +27,16 @@ public class SpecyBB {
 
 	private String title;
 	private List<Specy> list = null;
-		
+
 	@Inject
 	ExternalContext extcontext;
-	
+
 	@Inject
 	Flash flash;
-	
+
 	@EJB
 	SpecyDAO specyDAO;
-	
-		
+
 	public String getTitle() {
 		return title;
 	}
@@ -46,64 +45,43 @@ public class SpecyBB {
 		this.title = title;
 	}
 
-	public List<Specy> getFullList(){
+	public List<Specy> getFullList() {
 		return specyDAO.getFullList();
 	}
 
-	public List<Specy> getList(){
-//		List<Specy> list = null;
-		
-		//1. Prepare search params
-		Map<String,Object> searchParams = new HashMap<String, Object>();
-		
-//		if (title != null && title.length() > 0){
-//			searchParams.put("title", title);
-//		}
-		
-		//2. Get list
+	public List<Specy> getList() {
+
+		Map<String, Object> searchParams = new HashMap<String, Object>();
+
 		list = specyDAO.getList(searchParams);
 		return list;
 	}
 
-	public String newSpecy(){
+	public String newSpecy() {
 		Specy specy = new Specy();
-		
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash	
+
 		flash.put("specy", specy);
-		
+
 		return PAGE_SPECY_EDIT;
 	}
 
-	public String editSpecy(Specy specy){
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash 
+	public String editSpecy(Specy specy) {
+
 		flash.put("specy", specy);
-		
+
 		return PAGE_SPECY_EDIT;
 	}
-	
-	public String showSpecy(Specy specy){
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash 
+
+	public String showSpecy(Specy specy) {
+
 		flash.put("specy", specy);
-		
+
 		return PAGE_SPECY_DETAILS;
 	}
 
-	public String deleteSpecy(Specy specy){
+	public String deleteSpecy(Specy specy) {
 		specyDAO.remove(specy);
 		return PAGE_STAY_AT_THE_SAME;
 	}
-	
-	
+
 }

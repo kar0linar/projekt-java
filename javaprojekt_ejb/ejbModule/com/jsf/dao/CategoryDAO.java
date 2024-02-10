@@ -10,15 +10,10 @@ import jakarta.persistence.Query;
 
 import com.jsf.entities.Category;
 
-//DAO - Data Access Object for Person entity
-//Designed to serve as an interface between higher layers of application and data.
-//Implemented as stateless Enterprise Java bean - server side code that can be invoked even remotely.
-
 @Stateless
 public class CategoryDAO {
 	private final static String UNIT_NAME = "jsfcourse-simplePU";
 
-	// Dependency injection (no setter method is needed)
 	@PersistenceContext(unitName = UNIT_NAME)
 	protected EntityManager em;
 
@@ -51,17 +46,15 @@ public class CategoryDAO {
 
 		return list;
 	}
-	
+
 	public List<Category> getList(Map<String, Object> searchParams) {
 		List<Category> list = null;
 
-		// 1. Build query string with parameters
 		String select = "select c ";
 		String from = "from Category c ";
 		String where = "";
 		String orderby = "";
 
-		// search for surid
 		String category_name = (String) searchParams.get("category_name");
 		if (category_name != null) {
 			if (where.isEmpty()) {
@@ -71,19 +64,12 @@ public class CategoryDAO {
 			}
 			where += "c.category_name like :category_name ";
 		}
-		
-		// ... other parameters ... 
 
-		// 2. Create query object
 		Query query = em.createQuery(select + from + where + orderby);
 
-		// 3. Set configured parameters
 		if (category_name != null) {
 		}
 
-		// ... other parameters ... 
-
-		// 4. Execute query and retrieve list of Person objects
 		try {
 			list = query.getResultList();
 		} catch (Exception e) {
@@ -92,8 +78,5 @@ public class CategoryDAO {
 
 		return list;
 	}
-	
-	
 
 }
-
